@@ -1,11 +1,11 @@
 ﻿using SensorReading.Application.Dto.Beehive;
-using SensorReading.Domain;
+using SensorReading.Domain.Models;
 
 namespace SensorReading.Application.Mapping
 {
     internal static class Sht31Mapping
     {
-        public static Sht31TempDto ToTemperatureDto(this Sht31 sensor)
+        internal static Sht31TempDto ToTemperatureDto(this Sht31 sensor)
         {
             return new Sht31TempDto
             {
@@ -14,7 +14,7 @@ namespace SensorReading.Application.Mapping
             };
         }
 
-        public static Sht31MoisDto ToMoistureDto(this Sht31 sensor)
+        internal static Sht31MoisDto ToMoistureDto(this Sht31 sensor)
         {
 
             return new Sht31MoisDto
