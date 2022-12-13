@@ -1,4 +1,4 @@
-﻿using SensorReading.Domain;
+﻿using SensorReading.Domain.Models;
 
 namespace SensorReading.InfrastructureChart.Repository
 {
