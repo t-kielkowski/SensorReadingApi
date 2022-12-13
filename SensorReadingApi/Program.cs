@@ -1,5 +1,6 @@
 using MediatR;
 using SensorReading.Application.Feature.Beehive;
+using SensorReading.Infrastructure.Repository;
 using SensorReading.InfrastructureChart;
 using SensorReading.InfrastructureChart.Repository;
 
@@ -11,12 +12,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<SensorReadingsContext>();
-builder.Services.AddTransient<IBH1750Repository, BH1750Repository>();
-builder.Services.AddTransient<IBMP280Repository, BMP280Repository>();
-builder.Services.AddTransient<IHDC1080Repository, HDC1080Repository>();
 builder.Services.AddTransient<ISHT31Repository, SHT31Repository>();
 builder.Services.AddTransient<ISHT31TestRepository, SHT31TestRepository>();
-builder.Services.AddTransient<ISoilMoistureRepository, SoilMoistureRepository>();
+builder.Services.AddTransient<IBeehiveRepository, BeehiveRepository>();
 builder.Services.AddMediatR(typeof(GetSensorDataQuery));
 
 var app = builder.Build();
