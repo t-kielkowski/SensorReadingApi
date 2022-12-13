@@ -5,8 +5,8 @@ namespace SensorReading.Application.Feature.Beehive
 {
     public  class GetSensorDataQuery : IRequest<BeehiveDataDto>
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
-        public GetSensorDataQuery(int id) => Id = id;        
+        public GetSensorDataQuery(string id) => Id = id;        
     }
 }
