@@ -15,9 +15,18 @@ namespace SensorReading.Api.Controllers
 
         [HttpGet]
         [Route("get", Name = "GetSensorData")]    
-        public async Task<BeehiveDataDto> GetSensorDataForGivenBeehive(int id)
+        public async Task<BeehiveDataDto> GetSensorDataForGivenBeehive(string id)
         {
             var command = new GetSensorDataQuery(id);
+            var result = await Mediator.Send(command).ConfigureAwait(false);
+            return result;
+        }
+
+        [HttpGet]
+        [Route("get", Name = "GetBeehiveList")]
+        public async Task<List<string>> GetBeehiveList()
+        {
+            var command = new GetBeehiveListQuery();
             var result = await Mediator.Send(command).ConfigureAwait(false);
             return result;
         }
