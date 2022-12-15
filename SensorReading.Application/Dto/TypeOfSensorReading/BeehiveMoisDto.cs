@@ -1,6 +1,6 @@
-﻿namespace SensorReading.Application.Dto.Beehive
+﻿namespace SensorReading.Application.Dto
 {
-    public class Sht31MoisDto
+    public class BeehiveMoisDto
     {
         public string Moisture { get; set; }
         public string ReadingTime { get; set; }
