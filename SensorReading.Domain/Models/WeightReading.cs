@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace SensorReading.Domain.Models;
+﻿namespace SensorReading.Domain.Models;
 
 public partial class WeightReading
 {
