@@ -12,18 +12,15 @@ namespace SensorReading.Infrastructure.Repository
             DbContext = dbContext;
         }
 
-        public async Task<List<string>> BeehiveList()
+        public async Task<ICollection<string?>> BeehiveList()
         {
-            var result = await DbContext.WeightReadings.FromSqlRaw("SELECT WeightId FROM `WeightReadings` GROUP BY WeightId").AsNoTracking().ToListAsync();
+            var result = new List<string>();
 
-            var beehiveList = new List<string>();
-
-            if (result is not null && result.Count > 0)
-                foreach (var item in result)
-                    if (!string.IsNullOrEmpty(item.WeightId))
-                        beehiveList.Add(item.WeightId);
-
-            return beehiveList;
+            return await DbContext
+                .WeightReadings
+                .GroupBy(bee => bee.WeightId)
+                .Select(id => id.Key)
+                .ToListAsync();         
         }
     }
 }

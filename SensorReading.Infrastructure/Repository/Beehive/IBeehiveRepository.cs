@@ -2,6 +2,6 @@
 {
     public interface IBeehiveRepository
     {
-        Task<List<string>> BeehiveList();
+        Task<ICollection<string?>> BeehiveList();
     }
 }
