@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using SensorReading.Infrastructure.Repository;
 
-namespace SensorReading.Application.Feature.Beehive
+namespace SensorReading.Application.Feature.BeehiveList
 {
-    internal class GetBeehiveListQueryHandler : IRequestHandler<GetBeehiveListQuery, List<string>>
+    internal class GetBeehiveListQueryHandler : IRequestHandler<GetBeehiveListQuery, ICollection<string?>>
     {
         private readonly IBeehiveRepository _beehiveRepository;
 
@@ -12,8 +12,8 @@ namespace SensorReading.Application.Feature.Beehive
             _beehiveRepository = beehiveRepository;
         }
 
-        public async Task<List<string>> Handle(GetBeehiveListQuery request, CancellationToken cancellationToken)
-        {            
+        public async Task<ICollection<string?>> Handle(GetBeehiveListQuery request, CancellationToken cancellationToken)
+        {
             return await _beehiveRepository.BeehiveList().ConfigureAwait(false);
         }
     }
