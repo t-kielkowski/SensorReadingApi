@@ -13,6 +13,5 @@ namespace SensorReading.Api.Controllers
         {
             Mediator = mediator;
         }
-
     }
 }
