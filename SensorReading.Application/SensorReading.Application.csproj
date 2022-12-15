@@ -18,4 +18,8 @@
     <ProjectReference Include="..\SensorReading.Infrastructure\SensorReading.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Mapping\" />
+  </ItemGroup>
+
 </Project>
