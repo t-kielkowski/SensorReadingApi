@@ -1,6 +1,7 @@
 using MediatR;
-using SensorReading.Application.Feature.Beehive;
+using SensorReading.Application.Feature.GetTemperatureData;
 using SensorReading.Infrastructure.Repository;
+using SensorReading.Infrastructure.Repository.WeightReadings;
 using SensorReading.InfrastructureChart;
 using SensorReading.InfrastructureChart.Repository;
 
@@ -12,10 +13,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<SensorReadingsContext>();
-builder.Services.AddTransient<ISHT31Repository, SHT31Repository>();
-builder.Services.AddTransient<ISHT31TestRepository, SHT31TestRepository>();
 builder.Services.AddTransient<IBeehiveRepository, BeehiveRepository>();
-builder.Services.AddMediatR(typeof(GetSensorDataQuery));
+builder.Services.AddTransient<IWeightReadingsRepository, WeightReadingsRepository>();
+builder.Services.AddMediatR(typeof(GetSensorTempDataQuery));
 
 var app = builder.Build();
 
