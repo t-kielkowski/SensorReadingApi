@@ -3,7 +3,6 @@ using SensorReading.Application.Feature.GetTemperatureData;
 using SensorReading.Infrastructure.Repository;
 using SensorReading.Infrastructure.Repository.WeightReadings;
 using SensorReading.InfrastructureChart;
-using SensorReading.InfrastructureChart.Repository;
 
 
 var builder = WebApplication.CreateBuilder(args);
