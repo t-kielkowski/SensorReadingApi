@@ -13,6 +13,8 @@ namespace SensorReading.Api.Controllers
     [ApiController]
     public class BeehiveController : BaseController
     {
+        private const string _mandatoryParameter = "Id is mandatory";
+
         public BeehiveController(IMediator mediator) : base(mediator)
         {}
 
@@ -21,8 +23,7 @@ namespace SensorReading.Api.Controllers
         public async Task<ICollection<string?>> GetBeehiveList()
         {
             var command = new GetBeehiveListQuery();
-            var result = await Mediator.Send(command).ConfigureAwait(false);
-            return result;
+            return await Mediator.Send(command).ConfigureAwait(false);
         }
 
         [HttpGet]
@@ -30,18 +31,12 @@ namespace SensorReading.Api.Controllers
         public async Task<IEnumerable<BeehiveTempDto>> GetTemperatureData([FromQuery] string id, [FromQuery] DateTime? dateFrom, [FromQuery] DateTime? dateTo)
         {
             if (string.IsNullOrEmpty(id))
-                throw new BadHttpRequestException("Id is mandatory");
+                throw new BadHttpRequestException(_mandatoryParameter);
 
-            var searchParams = new WeightReadingsSearchParams
-            {
-                WeightId = id,
-                DateFrom = dateFrom,
-                DateTo = dateTo
-            };
-
+            var searchParams = CreateSearchParams(id, dateFrom, dateTo);
             var command = new GetSensorTempDataQuery(searchParams);
-            var result = await Mediator.Send(command).ConfigureAwait(false);
-            return result;
+
+            return await Mediator.Send(command).ConfigureAwait(false);
         }
 
         [HttpGet]
@@ -49,18 +44,12 @@ namespace SensorReading.Api.Controllers
         public async Task<IEnumerable<BeehiveMoisDto>> GetMoistureData([FromQuery] string id, [FromQuery] DateTime? dateFrom, [FromQuery] DateTime? dateTo)
         {
             if (string.IsNullOrEmpty(id))
-                throw new BadHttpRequestException("Id is mandatory");
+                throw new BadHttpRequestException(_mandatoryParameter);
 
-            var searchParams = new WeightReadingsSearchParams
-            {
-                WeightId = id,
-                DateFrom = dateFrom,
-                DateTo = dateTo
-            };
-
+            var searchParams = CreateSearchParams(id, dateFrom, dateTo);
             var command = new GetSensorMoisDataQuery(searchParams);
-            var result = await Mediator.Send(command).ConfigureAwait(false);
-            return result;
+
+            return  await Mediator.Send(command).ConfigureAwait(false);
         }
 
         [HttpGet]
@@ -68,18 +57,12 @@ namespace SensorReading.Api.Controllers
         public async Task<IEnumerable<BeehiveWeightDto>> GetWeightData([FromQuery] string id, [FromQuery] DateTime? dateFrom, [FromQuery] DateTime? dateTo)
         {
             if (string.IsNullOrEmpty(id))
-                throw new BadHttpRequestException("Id is mandatory");
+                throw new BadHttpRequestException(_mandatoryParameter);
 
-            var searchParams = new WeightReadingsSearchParams
-            {
-                WeightId = id,
-                DateFrom = dateFrom,
-                DateTo = dateTo
-            };
-
+            var searchParams = CreateSearchParams(id, dateFrom, dateTo);
             var command = new GetSensorWeightDataQuery(searchParams);
-            var result = await Mediator.Send(command).ConfigureAwait(false);
-            return result;
+
+            return await Mediator.Send(command).ConfigureAwait(false);
         }
 
         [HttpGet]
@@ -87,18 +70,19 @@ namespace SensorReading.Api.Controllers
         public async Task<IEnumerable<BeehiveBatteryLevelDto>> GetBaterryLevel([FromQuery] string id, [FromQuery] DateTime? dateFrom, [FromQuery] DateTime? dateTo)
         {
             if (string.IsNullOrEmpty(id))
-                throw new BadHttpRequestException("Id is mandatory");
+                throw new BadHttpRequestException(_mandatoryParameter);
 
-            var searchParams = new WeightReadingsSearchParams
-            {
-                WeightId = id,
-                DateFrom = dateFrom,
-                DateTo = dateTo
-            };
-
+            var searchParams = CreateSearchParams(id, dateFrom, dateTo);         
             var command = new GetBatteryLevelQuery(searchParams);
-            var result = await Mediator.Send(command).ConfigureAwait(false);
-            return result;
+
+            return await Mediator.Send(command).ConfigureAwait(false);
         }
+
+        private WeightReadingsSearchParams CreateSearchParams(string id, DateTime? dateFrom, DateTime? dateTo) => new()
+        {
+            WeightId = id,
+            DateFrom = dateFrom,
+            DateTo = dateTo
+        };
     }
 }
