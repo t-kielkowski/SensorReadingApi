@@ -28,7 +28,7 @@ namespace SensorReading.Api.Controllers
 
         [HttpGet]
         [Route("temperature", Name = "GetTempData")]    
-        public async Task<IEnumerable<BeehiveTempDto>> GetTemperatureData([FromQuery] string id, [FromQuery] DateTime? dateFrom, [FromQuery] DateTime? dateTo)
+        public async Task<BeehiveTempDto> GetTemperatureData([FromQuery] string id, [FromQuery] DateTime? dateFrom, [FromQuery] DateTime? dateTo)
         {
             if (string.IsNullOrEmpty(id))
                 throw new BadHttpRequestException(_mandatoryParameter);
@@ -41,7 +41,7 @@ namespace SensorReading.Api.Controllers
 
         [HttpGet]
         [Route("moisture", Name = "GetMoisData")]
-        public async Task<IEnumerable<BeehiveMoisDto>> GetMoistureData([FromQuery] string id, [FromQuery] DateTime? dateFrom, [FromQuery] DateTime? dateTo)
+        public async Task<BeehiveMoisDto> GetMoistureData([FromQuery] string id, [FromQuery] DateTime? dateFrom, [FromQuery] DateTime? dateTo)
         {
             if (string.IsNullOrEmpty(id))
                 throw new BadHttpRequestException(_mandatoryParameter);
@@ -54,7 +54,7 @@ namespace SensorReading.Api.Controllers
 
         [HttpGet]
         [Route("weight", Name = "GetWeightData")]
-        public async Task<IEnumerable<BeehiveWeightDto>> GetWeightData([FromQuery] string id, [FromQuery] DateTime? dateFrom, [FromQuery] DateTime? dateTo)
+        public async Task<BeehiveWeightDto> GetWeightData([FromQuery] string id, [FromQuery] DateTime? dateFrom, [FromQuery] DateTime? dateTo)
         {
             if (string.IsNullOrEmpty(id))
                 throw new BadHttpRequestException(_mandatoryParameter);
@@ -67,7 +67,7 @@ namespace SensorReading.Api.Controllers
 
         [HttpGet]
         [Route("baterryLevel", Name = "GetBaterryLevel")]
-        public async Task<IEnumerable<BeehiveBatteryLevelDto>> GetBaterryLevel([FromQuery] string id, [FromQuery] DateTime? dateFrom, [FromQuery] DateTime? dateTo)
+        public async Task<BeehiveBatteryLevelDto> GetBaterryLevel([FromQuery] string id, [FromQuery] DateTime? dateFrom, [FromQuery] DateTime? dateTo)
         {
             if (string.IsNullOrEmpty(id))
                 throw new BadHttpRequestException(_mandatoryParameter);

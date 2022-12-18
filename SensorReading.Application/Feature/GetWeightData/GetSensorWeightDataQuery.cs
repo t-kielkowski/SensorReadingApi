@@ -3,7 +3,7 @@ using SensorReading.Application.Dto;
 
 namespace SensorReading.Application.Feature.GetWeightData
 {
-    public class GetSensorWeightDataQuery : IRequest<IEnumerable<BeehiveWeightDto>>
+    public class GetSensorWeightDataQuery : IRequest<BeehiveWeightDto>
     {
         public WeightReadingsSearchParams SearchParams { get; }
 

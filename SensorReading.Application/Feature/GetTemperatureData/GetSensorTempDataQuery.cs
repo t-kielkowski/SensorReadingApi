@@ -3,7 +3,7 @@ using SensorReading.Application.Dto;
 
 namespace SensorReading.Application.Feature.GetTemperatureData
 {
-    public class GetSensorTempDataQuery : IRequest<IEnumerable<BeehiveTempDto>>
+    public class GetSensorTempDataQuery : IRequest<BeehiveTempDto>
     {
         public WeightReadingsSearchParams SearchParams { get; }
 

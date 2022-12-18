@@ -4,7 +4,7 @@ using SensorReading.Infrastructure.Repository.WeightReadings;
 
 namespace SensorReading.Application.Feature.GetTemperatureData
 {
-    public class GetSensorTempDataQueryHandler : IRequestHandler<GetSensorTempDataQuery, IEnumerable<BeehiveTempDto>>
+    public class GetSensorTempDataQueryHandler : IRequestHandler<GetSensorTempDataQuery, BeehiveTempDto>
     {
         private readonly IWeightReadingsRepository _weightReadingsRepository;
 
@@ -13,15 +13,15 @@ namespace SensorReading.Application.Feature.GetTemperatureData
             _weightReadingsRepository = weightReadingsRepository;
         }
 
-        public async Task<IEnumerable<BeehiveTempDto>> Handle(GetSensorTempDataQuery request, CancellationToken cancellationToken)
+        public async Task<BeehiveTempDto> Handle(GetSensorTempDataQuery request, CancellationToken cancellationToken)
         {
             var result = await _weightReadingsRepository.GetTempByIdAsync(request.SearchParams).ConfigureAwait(false);
 
-            return result.Select(x => new BeehiveTempDto()
+            return new BeehiveTempDto()
             {
-                Temperature = string.IsNullOrEmpty(x.Temperature) ? "0" : x.Temperature,
-                ReadingTime = x.ReadingTime.ToString()
-            });
+                Temperature = result.Select(x => string.IsNullOrEmpty(x.Temperature) ? "0" : x.Temperature).ToList(),
+                ReadingTime = result.Select(x => x.ReadingTime.ToString()).ToList()
+            };       
         }
     }
 }

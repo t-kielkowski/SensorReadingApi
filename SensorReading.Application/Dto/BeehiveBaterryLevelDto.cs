@@ -2,7 +2,7 @@
 {
     public class BeehiveBatteryLevelDto
     {
-        public string BatteryLevel { get; set; }
-        public string ReadingTime { get; set; }
+        public IEnumerable<string> BatteryLevel { get; set; }
+        public IEnumerable<string> ReadingTime { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 using SensorReading.Application.Dto;
 namespace SensorReading.Application.Feature.GetBatteryLevel
 {
-    public class GetBatteryLevelQuery : IRequest<IEnumerable<BeehiveBatteryLevelDto>>
+    public class GetBatteryLevelQuery : IRequest<BeehiveBatteryLevelDto>
     {
         public WeightReadingsSearchParams SearchParams { get; }
 

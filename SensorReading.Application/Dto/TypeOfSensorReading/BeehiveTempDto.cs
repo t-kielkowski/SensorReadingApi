@@ -2,7 +2,7 @@
 {
     public class BeehiveTempDto
     {
-        public string Temperature { get; set; }
-        public string ReadingTime { get; set; }
+        public IEnumerable<string> Temperature { get; set; }
+        public IEnumerable<string> ReadingTime { get; set; }
     }
 }

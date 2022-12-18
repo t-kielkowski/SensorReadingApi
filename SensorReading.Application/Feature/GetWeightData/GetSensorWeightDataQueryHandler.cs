@@ -4,7 +4,7 @@ using SensorReading.Infrastructure.Repository.WeightReadings;
 
 namespace SensorReading.Application.Feature.GetWeightData
 {
-    internal class GetSensorWeightDataQueryHandler : IRequestHandler<GetSensorWeightDataQuery, IEnumerable<BeehiveWeightDto>>
+    internal class GetSensorWeightDataQueryHandler : IRequestHandler<GetSensorWeightDataQuery, BeehiveWeightDto>
     {
         private readonly IWeightReadingsRepository _weightReadingsRepository;
 
@@ -13,15 +13,15 @@ namespace SensorReading.Application.Feature.GetWeightData
             _weightReadingsRepository = weightReadingsRepository;
         }
 
-        public async Task<IEnumerable<BeehiveWeightDto>> Handle(GetSensorWeightDataQuery request, CancellationToken cancellationToken)
+        public async Task<BeehiveWeightDto> Handle(GetSensorWeightDataQuery request, CancellationToken cancellationToken)
         {
             var result = await _weightReadingsRepository.GetWeightByIdAsync(request.SearchParams).ConfigureAwait(false);
 
-            return result.Select(x => new BeehiveWeightDto()
+            return new BeehiveWeightDto()
             {
-                Weight = string.IsNullOrEmpty(x.Weight) ? "0" : x.Weight,
-                ReadingTime = x.ReadingTime.ToString()
-            });
+                Weight = result.Select(x => string.IsNullOrEmpty(x.Weight) ? "0" : x.Weight).ToList(),
+                ReadingTime = result.Select(x => x.ReadingTime.ToString()).ToList()
+            };
         }
     }
 }

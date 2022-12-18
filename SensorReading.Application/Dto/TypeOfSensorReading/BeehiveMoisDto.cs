@@ -2,7 +2,7 @@
 {
     public class BeehiveMoisDto
     {
-        public string Moisture { get; set; }
-        public string ReadingTime { get; set; }
+        public IEnumerable<string> Moisture { get; set; }
+        public IEnumerable<string> ReadingTime { get; set; }
     }
 }

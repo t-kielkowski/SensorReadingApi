@@ -2,7 +2,7 @@
 {
     public class BeehiveWeightDto
     {
-        public string Weight { get; set; }
-        public string ReadingTime { get; set; }
+        public IEnumerable<string> Weight { get; set; }
+        public IEnumerable<string> ReadingTime { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using SensorReading.Infrastructure.Repository.WeightReadings;
 
 namespace SensorReading.Application.Feature.GetMoistureData
 {
-    public class GetSensorMoisDataQueryHandler : IRequestHandler<GetSensorMoisDataQuery, IEnumerable<BeehiveMoisDto>>
+    public class GetSensorMoisDataQueryHandler : IRequestHandler<GetSensorMoisDataQuery, BeehiveMoisDto>
     {
         private readonly IWeightReadingsRepository _weightReadingsRepository;
 
@@ -13,15 +13,15 @@ namespace SensorReading.Application.Feature.GetMoistureData
             _weightReadingsRepository = weightReadingsRepository;
         }
 
-        public async Task<IEnumerable<BeehiveMoisDto>> Handle(GetSensorMoisDataQuery request, CancellationToken cancellationToken)
+        public async Task<BeehiveMoisDto> Handle(GetSensorMoisDataQuery request, CancellationToken cancellationToken)
         {
-            var result = await _weightReadingsRepository.GetMoisByIdAsync(request.SearchParams).ConfigureAwait(false);
+            var result = await _weightReadingsRepository.GetMoisByIdAsync(request.SearchParams).ConfigureAwait(false);         
 
-            return result.Select(x => new BeehiveMoisDto()
+            return new BeehiveMoisDto()
             {
-                Moisture = string.IsNullOrEmpty(x.Moisture) ? "0" : x.Moisture,
-                ReadingTime = x.ReadingTime.ToString()
-            });
+                Moisture = result.Select(x => string.IsNullOrEmpty(x.Moisture) ? "0" : x.Moisture).ToList(),
+                ReadingTime = result.Select(x => x.ReadingTime.ToString()).ToList()
+            };
         }
     }
 }
