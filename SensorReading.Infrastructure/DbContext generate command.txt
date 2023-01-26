@@ -1,7 +1,7 @@
 ﻿Polecenie do wygenerowania modelu na podstawie tabel z bazy
 !!!podmienić connection string na odpowiedni w linii poniżej przed wywołaniem
 
-Scaffold-DbContext "connection_string_here" Pomelo.EntityFrameworkCore.MySql -OutputDir Models -Context "SensorReadingsContext" -Project SensorReading.Domain -Force -Tables "WeightReadings", "CentralGateway", "GatewayInformation", "SHT31", "SHT31TEST"
+Scaffold-DbContext "connection_string_here" Pomelo.EntityFrameworkCore.MySql -OutputDir Models -Context "SensorReadingsContext" -Project SensorReading.Domain -Force -Tables "WeightReadings", "CentralGateway", "GatewayInformation"
 
 Po wygenerowaniu pliku SensorReading.Domain.Models.SensorReadingsContext.cs należy przekopiować do pliku SensorReading.Infrastructure.Context.SensorReadingsContext.cs  całej listy z DbSetami oraz zawartość metody OnModelCreating. 
 Uważać, żeby nie nadpisać konstruktorów oraz metody OnConfiguring!!!

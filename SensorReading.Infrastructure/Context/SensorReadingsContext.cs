@@ -18,7 +18,6 @@ namespace SensorReading.InfrastructureChart
         public virtual DbSet<CentralGateway> CentralGateways { get; set; }
         public virtual DbSet<GatewayInformation> GatewayInformations { get; set; }
         public virtual DbSet<Sht31> Sht31s { get; set; }
-        public virtual DbSet<Sht31test> Sht31tests { get; set; }
         public virtual DbSet<WeightReading> WeightReadings { get; set; }
 
         #endregion
@@ -99,24 +98,7 @@ namespace SensorReading.InfrastructureChart
                     .HasDefaultValueSql("current_timestamp()")
                     .HasColumnType("timestamp");
                 entity.Property(e => e.Temperature).HasMaxLength(10);
-            });
-
-            modelBuilder.Entity<Sht31test>(entity =>
-            {
-                entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-                entity.ToTable("SHT31TEST");
-
-                entity.Property(e => e.Id).HasColumnType("int(6) unsigned");
-                entity.Property(e => e.BatteryLevel).HasMaxLength(6);
-                entity.Property(e => e.Moisture).HasMaxLength(10);
-                entity.Property(e => e.ReadingTime)
-                    .ValueGeneratedOnAddOrUpdate()
-                    .HasDefaultValueSql("current_timestamp()")
-                    .HasColumnType("timestamp");
-                entity.Property(e => e.Sensor).HasMaxLength(10);
-                entity.Property(e => e.Temperature).HasMaxLength(10);
-            });
+            });     
 
             modelBuilder.Entity<WeightReading>(entity =>
             {
