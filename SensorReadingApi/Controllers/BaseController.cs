@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SensorReading.Application.Dto;
 
 namespace SensorReading.Api.Controllers
 {
@@ -13,5 +14,12 @@ namespace SensorReading.Api.Controllers
         {
             Mediator = mediator;
         }
+
+        protected WeightReadingsSearchParams CreateSearchParams(string id, DateTime? dateFrom, DateTime? dateTo) => new()
+        {
+            WeightId = id,
+            DateFrom = dateFrom,
+            DateTo = dateTo
+        };
     }
 }

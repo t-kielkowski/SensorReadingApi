@@ -76,13 +76,6 @@ namespace SensorReading.Api.Controllers
             var command = new GetBatteryLevelQuery(searchParams);
 
             return await Mediator.Send(command).ConfigureAwait(false);
-        }
-
-        private WeightReadingsSearchParams CreateSearchParams(string id, DateTime? dateFrom, DateTime? dateTo) => new()
-        {
-            WeightId = id,
-            DateFrom = dateFrom,
-            DateTo = dateTo
-        };
+        }       
     }
 }
