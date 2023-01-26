@@ -20,7 +20,7 @@ namespace SensorReading.InfrastructureChart.Repository
             .ConfigureAwait(false);
         }
 
-        public virtual async Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
+        public virtual async Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>>? filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
         {
             IQueryable<TEntity> query = DbContext.Set<TEntity>();
 
@@ -48,7 +48,7 @@ namespace SensorReading.InfrastructureChart.Repository
             await DbContext.SaveChangesAsync();
         }
 
-        protected virtual TEntity UpdateEntity(TEntity dbEntity, TEntity entity)
+        protected virtual TEntity UpdateEntity(TEntity dbEntity, TEntity entity) //must be overridden
         {
             throw new NotImplementedException();
         }
